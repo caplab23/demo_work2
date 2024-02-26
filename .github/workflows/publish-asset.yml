@@ -19,9 +19,9 @@ jobs:
         run: |
           sudo apt-get update
           npm install -g api-catalog-cli@latest
-      - name: Publish API to Anypoint Exchange
+      - name: Deploy to Cloud
         env: 
           ANYPOINT_USERNAME: ${{ secrets.ANYPOINT_USERNAME }} 
           ANYPOINT_PASSWORD: ${{ secrets.ANYPOINT_PASSWORD }}
         run: |
-          api-catalog publish-asset  --username="$ANYPOINT_USERNAME" --password="$ANYPOINT_PASSWORD"
+          mvn deploy -DmuleDeploy -Danypoint.username="$ANYPOINT_USERNAME" -Danypoint.password="$ANYPOINT_PASSWORD"
